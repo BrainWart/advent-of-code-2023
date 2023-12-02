@@ -3,7 +3,7 @@
 
   outputs = { self, nixpkgs, ... }:
   let
-    packageName = "transcripter";
+    packageName = "advent-of-code-2023";
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
@@ -45,6 +45,12 @@
         pkgs.dotnet-sdk_7
         pkgs.omnisharp-roslyn
         pkgs.mono
+        (pkgs.buildDotnetGlobalTool {
+          pname = "dotnet-script";
+          version = "1.5.0";
+          nugetSha256 = "sha256-PRcgWOOr1+Tx3DNZYHjGgZ+zxHPSjEGwJsue0DoRXMg=";
+          dotnet-sdk = pkgs.dotnet-sdk_7;
+        })
       ];
     };
   };
